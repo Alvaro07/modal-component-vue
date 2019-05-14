@@ -6,4 +6,4 @@ Modal Component, developed with Vue
 
 --
 
-<!-- Link: [https://alvaro07.github.io/vue-todo/](https://alvaro07.github.io/vue-todo/) -->
+Link: [https://alvaro07.github.io/modal-component-vue/](https://alvaro07.github.io/modal-component-vue/)

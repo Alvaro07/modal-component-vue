@@ -10,21 +10,39 @@
 
     <modal v-if="modalShow && modal === 'modal-test-two'" @close="closeModal">
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed dictum dignissim fermentum. Vestibulum ac rutrum elit,</p>
+      <template v-slot:footer>
+        <v-button
+          text="Accept"
+          :onButtonClick="closeModal"
+          extraClass="margin-right-10"
+          color="green"
+        ></v-button>
+        <v-button text="Close" :onButtonClick="closeModal" color="red"></v-button>
+      </template>
     </modal>
-    <p @click.prevent="openModal('modal-test')">Open!</p>
-    <p @click.prevent="openModal('modal-test-two')">Open modal-test-two!</p>
+
+    <v-button
+      text="Open modal with title"
+      :onButtonClick="() => openModal('modal-test')"
+      extraClass="margin-right-20"
+    >Open modal-test!</v-button>
+    <v-button
+      text="Open modal with footer"
+      :onButtonClick="() => openModal('modal-test-two')"
+    >Open modal-test-two!</v-button>
   </div>
 </template>
 
 <script>
 import Modal from "./components/Modal.vue";
+import Button from "./components/Button.vue";
 
 export default {
   name: "app",
   components: {
-    Modal
+    Modal,
+    "v-button": Button
   },
-
   data: function() {
     return {
       modalShow: false,
@@ -52,6 +70,7 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: $lightGrey;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  padding: 15px;
 }
 </style>

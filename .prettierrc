@@ -1,3 +1,4 @@
 {
-    "printWidth": 130
-  }
+  "jsxBracketSameLine": true,
+  "printWidth": 160
+}

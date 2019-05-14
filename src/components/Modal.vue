@@ -11,7 +11,9 @@
         <slot></slot>
       </main>
 
-      <footer></footer>
+      <footer v-if="hasFooterSlot" class="c-modal__footer">
+        <slot name="footer"></slot>
+      </footer>
     </section>
   </div>
 </template>
@@ -34,12 +36,19 @@ export default {
     closeModal() {
       this.$emit("close");
     }
+  },
+  computed: {
+    hasFooterSlot() {
+      return !!this.$slots.footer;
+    }
   }
 };
 </script>
 
 <style  lang="scss">
 .c-modal {
+  --modal-max-width: 600px;
+
   height: 100vh;
   width: 100%;
   padding: 30px;
@@ -58,7 +67,14 @@ export default {
     position: relative;
     border-radius: 2px;
     box-shadow: 5px 5px rgba($darkGrey, 0.2);
-    max-width: 960px;
+
+    @include mediaTablet {
+      max-width: var(--modal-max-width);
+    }
+
+    @include mediaTablet {
+      --modal-max-widt: 900px;
+    }
 
     &__close {
       position: absolute;
@@ -68,10 +84,10 @@ export default {
       font-size: 3rem;
       cursor: pointer;
       transition: 0.3s all ease;
-      color: $red;
+      color: $darkGrey;
 
       &:hover {
-        color: $darkRed;
+        color: rgba($darkGrey, 0.7);
       }
     }
   }
@@ -81,13 +97,18 @@ export default {
     background-color: $lightGrey;
 
     &__title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
     }
   }
 
   &__content {
     padding: 30px;
+  }
+
+  &__footer {
+    padding: 15px 30px;
+    background-color: rgba($darkGrey, 0.1);
   }
 }
 </style>
